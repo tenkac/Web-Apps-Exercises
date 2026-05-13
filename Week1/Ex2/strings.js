@@ -1,25 +1,21 @@
-"use strict";
+"use strict"
 
 let names = "Luigi De Russis, Luca Mannella, Fulvio Corno, Juan Pablo Saenz Moreno, Enrico Masala, Antonio Servetti";
-let namesArray = names.split(",").map(name => name.trim());
-// console.log(namesArray);
 
-let results = [];
+let namesArray = names.split(", ");
 
-for(let a of namesArray){
-    let words = a.split(" ");
-    let temp = "";
-    for(let i = 0; i<words.length; i++){
-        if(words[i].length > 0){
-            temp += words[i][0].toUpperCase();
-        }
+
+let acronyms = [];
+
+
+for (let name of namesArray){
+    let acronym = '';
+    for (let word of name.split(" ")){
+        acronym += word[0].toUpperCase();
     }
-    results.push({
-        acc: temp,
-        name: a    
-    });
+    acronyms.push(acronym);
 }
-results.sort((a,b) => a.acc.localeCompare(b.acc));
-for (let a of results){
-    console.log(`The list of sorted names and acronyms is: ${a.name} - ${a.acc}`);
+
+for (let i=0; i < namesArray.length; i++){
+    console.log('The studet is: ', namesArray[i], " with the acronym", acronyms[i]);
 }
