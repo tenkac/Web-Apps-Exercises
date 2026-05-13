@@ -1,35 +1,42 @@
-"use strict" ;
+"use strict"
 
-let average = (initVal, ...arr) => {
-    let sum = initVal;
-    for(let a of arr) sum += a;
-    let avg = sum/(arr.length);
-    return avg;
+let scores = [12,2,3,5,1,2,3,4,6,-2,3,-5,-2,-4,7,8];
+
+console.log("Original Scores: ", scores);
+
+let scores2 = Array.from(scores);
+
+scores2.sort((a,b) => a-b);
+
+let NN = 0;
+let average = 0;
+let total = 0;
+
+
+scores2 = scores2.filter(score => score>=0);
+
+NN = scores.length - scores2.length;
+
+console.log("The removed negatives are: ", NN);
+
+
+for (let val of scores2){
+    total += val;
 }
 
-let scores = [1,2,-3,5,3,-4,1,-2,5,2,4];
+average = Math.round(total/scores2.length);
 
-let dupscores = [...scores];
-let negatives = dupscores.filter(x => x<0);
-let n = negatives.length;
-dupscores = dupscores.filter(x => x>0);
+console.log("The average is: ", average);
 
-
-dupscores.sort((a,b) => a-b);
-dupscores.splice(0,2);
+scores2.shift();
+scores2.shift();
 
 
-let avg = Math.round(average(0,...dupscores));
-
-for(let i = 0; i < n+2;i++){
-    dupscores.push(avg);
+for(let i=0; i < NN+2; i++){
+    scores2.push(average);
 }
 
-console.log(`The scores of the first group are: ${scores}`);
-console.log(`The scores of the first group are: ${dupscores}`)
-
-
-
+console.log("The list after the modifications is: ", scores2);
 
 
 
